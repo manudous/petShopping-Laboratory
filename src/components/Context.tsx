@@ -1,17 +1,20 @@
 import React from "react";
 
-interface Contexto {
-  animalsId: string[];
-  setAnimalsId: (ids: string[]) => void;
+interface Context {
+  animalId: string[];
+  setAnimalId: (ids: string[]) => void;
 }
 
-export const MyContext = React.createContext<Contexto>(null);
+export const MyContext = React.createContext<Context>({
+  animalId: ["1"],
+  setAnimalId: (value) => []
+});
 
 export const MyContextProvider = (props) => {
-  const [animalsId, setAnimalsId] = React.useState<string[]>([]);
+  const [animalId, setAnimalId] = React.useState<string[]>([]);
 
   return (
-    <MyContext.Provider value={{ animalsId, setAnimalsId }}>
+    <MyContext.Provider value={{ animalId, setAnimalId }}>
       {props.childen}
     </MyContext.Provider>
   );

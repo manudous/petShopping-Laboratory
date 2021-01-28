@@ -15,6 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
 import PetsIcon from "@material-ui/icons/Pets";
+import { MyContext } from "./Context";
 
 export const useStyles = makeStyles({});
 interface visualMode {
@@ -23,6 +24,9 @@ interface visualMode {
 }
 
 export const Kutties: React.FC = () => {
+  const myContext = React.useContext(MyContext);
+  console.log(myContext.animalId)
+  
   const [animals, setAnimals] = React.useState<PictureInfo[]>([]);
 
   const [selected, setSelected] = React.useState<visualMode>();
