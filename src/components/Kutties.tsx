@@ -9,6 +9,7 @@ import {
   Checkbox,
   FormControlLabel,
   CardActionArea,
+  Typography,
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
@@ -17,16 +18,25 @@ import { makeStyles } from "@material-ui/core/styles";
 import PetsIcon from "@material-ui/icons/Pets";
 import { MyContext } from "./Context";
 
-export const useStyles = makeStyles({});
+export const useStyles = makeStyles({
+  checkedButton: {
+    marginLeft: "1rem",
+  },
+  h1Header: {
+    textAlign: "center",
+    fontWeight: "bold",
+    margin: "1rem"
+  },
+});
 interface visualMode {
   id: string;
   selected: boolean;
 }
 
-export const Kutties: React.FC = () => {
+export const Kutties: React.FC = (): JSX.Element => {
   const myContext = React.useContext(MyContext);
-  console.log(myContext.animalId)
-  
+  console.log(myContext.animalId);
+
   const [animals, setAnimals] = React.useState<PictureInfo[]>([]);
 
   const [selected, setSelected] = React.useState<visualMode>();
@@ -38,16 +48,19 @@ export const Kutties: React.FC = () => {
   const onCheckboxClicked = (event) => {
     setSelected({
       id: event.target.id,
-      selected: event.target.checked
-    })
-  }
-  console.log(selected);
+      selected: event.target.checked,
+    });
+  };
+  // console.log(selected);
   const classes = useStyles();
 
   return (
     <>
-      <h1>Kitties</h1>
+      <Typography variant="h2" color="initial" className={classes.h1Header}>
+        Kitties
+      </Typography>
       <Grid
+        className="animate__animated animate__fadeIn"
         container
         direction="row"
         justify="center"
@@ -77,6 +90,7 @@ export const Kutties: React.FC = () => {
                 </CardActionArea>
 
                 <FormControlLabel
+                  className={classes.checkedButton}
                   control={
                     <Checkbox id={animal.id} onChange={onCheckboxClicked} />
                   }

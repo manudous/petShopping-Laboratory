@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NavBar } from "../nav/NavBar";
+import { NavBar } from "../ui/NavBar";
 import { Cart } from "../components/Cart";
+// import { MyContextProvider } from "../components/Context";
 
 import { Puppies } from "../components/Puppies";
 import { Kutties } from "../components/Kutties";
@@ -10,15 +11,17 @@ export const RoutesComponent = () => {
   return (
     <>
       <Router>
-        <NavBar />
-        <div>
-          <Switch>
-            <Route exact path="/puppies" component={Puppies} />
+        
+          <NavBar />
+          <div>
+            <Switch>
+              <Route exact path="/puppies" component={Puppies} />
 
-            <Route path="/" component={Kutties} />
-          </Switch>
-        </div>
-        <Cart />
+              <Route path="/" component={Kutties} />
+            </Switch>
+          </div>
+          <Cart />
+        
       </Router>
     </>
   );

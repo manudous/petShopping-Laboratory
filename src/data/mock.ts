@@ -86,7 +86,7 @@ export const puppies: PictureInfo[] = [
   },
   {
     id: "17",
-    picUrl: "../../src/assets/animals/dalmata.jpg",
+    picUrl: "../../src/assets/animals/boxer.jpg",
     title: "Boxer",
   },
   {
