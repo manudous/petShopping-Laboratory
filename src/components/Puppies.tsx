@@ -1,6 +1,6 @@
 import React from "react";
 import { PictureInfo } from "../types/pictureInfo";
-import { kitties } from "../data/mock";
+import { puppies } from "../data/mock";
 
 import {
   Card,
@@ -17,32 +17,32 @@ import { makeStyles } from "@material-ui/core/styles";
 import PetsIcon from "@material-ui/icons/Pets";
 
 export const useStyles = makeStyles({});
-interface visualMode {
+interface visualMod {
   id: string;
   selected: boolean;
 }
 
-export const Kutties: React.FC = () => {
+export const Puppies: React.FC = () => {
   const [animals, setAnimals] = React.useState<PictureInfo[]>([]);
 
-  const [selected, setSelected] = React.useState<visualMode>();
+  const [state, setState] = React.useState({});
 
   React.useEffect(() => {
-    setAnimals(kitties);
+    setAnimals(puppies);
   }, []);
 
   const onCheckboxClicked = (event) => {
-    setSelected({
-      id: event.target.id,
-      selected: event.target.checked
+    setState({
+      ...state,
+      [event.target.id]: event.target.checked
     })
   }
-  console.log(selected);
+  console.log(state);
   const classes = useStyles();
 
   return (
     <>
-      <h1>Kitties</h1>
+      <h1>Puppies</h1>
       <Grid
         container
         direction="row"
