@@ -4,12 +4,10 @@ import { kitties } from "../data/mock";
 import { Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
-
-import { MyContext } from "./Context";
+import { MyContext } from "../context/Context";
 import { CardPet } from "../common/CardPet";
 import { mapPet } from "../common/mapPet";
-import {petStyles} from "./styles"
-
+import { petStyles } from "./styles";
 
 interface visualMode {
   id: string;
@@ -17,9 +15,7 @@ interface visualMode {
 }
 
 export const Kutties: React.FC = (): JSX.Element => {
-
   const myContext = React.useContext(MyContext);
-  console.log(myContext.animalId);
 
   const pets = mapPet(kitties);
 
@@ -31,7 +27,7 @@ export const Kutties: React.FC = (): JSX.Element => {
       selected: event.target.checked,
     });
   };
-  
+
   console.log(selected);
   const classes = petStyles();
 

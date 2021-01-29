@@ -5,10 +5,7 @@ interface Context {
   setAnimalId: (ids: string[]) => void;
 }
 
-export const MyContext = React.createContext<Context>({
-  animalId: ["1"],
-  setAnimalId: (value) => []
-});
+export const MyContext = React.createContext<Context>(null);
 
 export const MyContextProvider = (props) => {
   const [animalId, setAnimalId] = React.useState<string[]>([]);
