@@ -1,49 +1,29 @@
 import React from "react";
-import { PictureInfo } from "../types/pictureInfo";
 import { kitties } from "../data/mock";
 
-import {
-  Card,
-  Avatar,
-  CardHeader,
-  Checkbox,
-  FormControlLabel,
-  CardActionArea,
-  Typography,
-} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
-import CardMedia from "@material-ui/core/CardMedia";
-import { makeStyles } from "@material-ui/core/styles";
-import PetsIcon from "@material-ui/icons/Pets";
-import { MyContext } from "./Context";
 
-export const useStyles = makeStyles({
-  checkedButton: {
-    marginLeft: "1rem",
-  },
-  h1Header: {
-    textAlign: "center",
-    fontWeight: "bold",
-    margin: "1rem"
-  },
-});
+import { MyContext } from "./Context";
+import { CardPet } from "../common/CardPet";
+import { mapPet } from "../common/mapPet";
+import {petStyles} from "./styles"
+
+
 interface visualMode {
   id: string;
   selected: boolean;
 }
 
 export const Kutties: React.FC = (): JSX.Element => {
+
   const myContext = React.useContext(MyContext);
   console.log(myContext.animalId);
 
-  const [animals, setAnimals] = React.useState<PictureInfo[]>([]);
+  const pets = mapPet(kitties);
 
   const [selected, setSelected] = React.useState<visualMode>();
-
-  React.useEffect(() => {
-    setAnimals(kitties);
-  }, []);
 
   const onCheckboxClicked = (event) => {
     setSelected({
@@ -51,8 +31,9 @@ export const Kutties: React.FC = (): JSX.Element => {
       selected: event.target.checked,
     });
   };
-  // console.log(selected);
-  const classes = useStyles();
+  
+  console.log(selected);
+  const classes = petStyles();
 
   return (
     <>
@@ -67,37 +48,13 @@ export const Kutties: React.FC = (): JSX.Element => {
         alignItems="center"
         spacing={3}
       >
-        {animals.map(
-          (animal): JSX.Element => (
-            <Grid item key={animal.id}>
-              <Card className="root">
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="cat">
-                      <PetsIcon color="primary" />
-                    </Avatar>
-                  }
-                  title={animal.title}
-                />
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="250"
-                    image={animal.picUrl}
-                    title="Contemplative Reptile"
-                  />
-                </CardActionArea>
-
-                <FormControlLabel
-                  className={classes.checkedButton}
-                  control={
-                    <Checkbox id={animal.id} onChange={onCheckboxClicked} />
-                  }
-                  label="Buy"
-                />
-              </Card>
-            </Grid>
+        {pets.map(
+          (pet): JSX.Element => (
+            <CardPet
+              key={pet.id}
+              {...pet}
+              onCheckboxClicked={onCheckboxClicked}
+            />
           )
         )}
       </Grid>

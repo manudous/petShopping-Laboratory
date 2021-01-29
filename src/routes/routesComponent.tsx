@@ -11,17 +11,15 @@ export const RoutesComponent = () => {
   return (
     <>
       <Router>
-        
-          <NavBar />
-          <div>
-            <Switch>
-              <Route exact path="/puppies" component={Puppies} />
+        <NavBar />
+        <div>
+          <Switch>
+            <Route exact path="/puppies" component={Puppies} />
 
-              <Route path="/" component={Kutties} />
-            </Switch>
-          </div>
-          <Cart />
-        
+            <Route path="/" component={Kutties} />
+          </Switch>
+        </div>
+        <Cart />
       </Router>
     </>
   );
